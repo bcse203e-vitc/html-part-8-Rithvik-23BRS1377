@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            font-size: 18px;
+            padding: 5px;
+            width: 80px;
+            text-align: center;
+        }
+        button {
+            font-size: 18px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        #timerDisplay {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Countdown Timer</h2>
+    <input type="number" id="timeInput" min="1" placeholder="Seconds">
+    <button onclick="startCountdown()">Start</button>
+    <p id="timerDisplay">00:00</p>
+
+    <!-- Audio for the alarm -->
+    <audio id="alarmSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+    <script>
+        let countdown;
+        
+        function startCountdown() {
+            clearInterval(countdown); // Clear any existing countdown
+            const timeInput = document.getElementById("timeInput").value;
+            let time = parseInt(timeInput);
+
+            if (isNaN(time) || time <= 0) {
+                alert("Please enter a valid number of seconds!");
+                return;
+            }
+
+            updateDisplay(time);
+            
+            countdown = setInterval(() => {
+                time--;
+                updateDisplay(time);
+
+                if (time <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById("alarmSound").play(); // Play alarm sound
+                }
+            }, 1000);
+        }
+
+        function updateDisplay(time) {
+            const minutes = String(Math.floor(time / 60)).padStart(2, "0");
+            const seconds = String(time % 60).padStart(2, "0");
+            document.getElementById("timerDisplay").textContent = `${minutes}:${seconds}`;
+        }
+    </script>
+
+</body>
+</html>

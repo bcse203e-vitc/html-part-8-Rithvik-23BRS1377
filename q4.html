@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Toggle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .password-container {
+            display: flex;
+            align-items: center;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Password Visibility Toggle</h2>
+    
+    <div class="password-container">
+        <input type="password" id="password" placeholder="Enter password">
+        <input type="checkbox" id="togglePassword"> Show Password
+    </div>
+
+    <script>
+        document.getElementById("togglePassword").addEventListener("change", function () {
+            const passwordField = document.getElementById("password");
+            passwordField.type = this.checked ? "text" : "password";
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+    <style>
+        body {
+            width: 800px;
+
+            margin: 200px auto;
+        }
+        
+        p {
+            font-size: 22px ;
+           margin-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+    <p id="text">This is a text</p>
+    <button class="increase">Increase</button>
+    <button class="decrease">decrease</button>
+    <script>
+
+
+        function increase(){
+            let currentSize = parseInt(window.getComputedStyle(document.getElementById("text")).fontSize);
+            document.getElementById("text").style.fontSize = (currentSize +1) + "px";
+        }
+        function decrease(){
+            let currentSize = parseInt(window.getComputedStyle(document.getElementById("text")).fontSize);
+            if(currentSize == 0){
+                return;
+            }
+            document.getElementById("text").style.fontSize = (currentSize -1) + "px";
+        }
+
+
+        document.querySelector(".increase").addEventListener("click" , increase);
+        document.querySelector(".decrease").addEventListener("click" , decrease);
+    </script>
+</body>
+</html>
